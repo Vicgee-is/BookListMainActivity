@@ -1,9 +1,9 @@
 package cn.edu.jnu.supershopper.data;
 
 public class BookItem {
-    public BookItem(String title, Double price, int resourceId) {
+    public BookItem(String title,  int resourceId) {
         this.title = title;
-        this.price = price;
+       // this.price = price;
         this.resourceId = resourceId;
     }
 
@@ -15,14 +15,14 @@ public class BookItem {
         this.title = title;
     }
 
-    public Double getPrice() {
+    /*public Double getPrice() {
         return price;
     }
 
     public void setPrice(Double price) {
         this.price = price;
     }
-
+*/
     public int getResourceId() {
         return resourceId;
     }
@@ -32,6 +32,6 @@ public class BookItem {
     }
 
     private String title;
-    private Double price;
+    //private Double price;
     private int resourceId;
 }

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private MainRecycleViewAdapter mainRecycleViewAdapter;
     int []bookPicture=new int[]{R.drawable.book_1, R.drawable.book_2, R.drawable.book_no_name};
     String []bookNames=new String[]{" 信息安全数学基础（第2版）"," 软件项目管理案例教程（第4版）"," 创新工程实践"};
-    double []bookPrice=new double[]{100.00,121.00,123.00};
+   // double []bookPrice=new double[]{100.00,121.00,123.00};
 
     private ActivityResultLauncher<Intent> addDataLauncher= registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
             ,result -> {
@@ -43,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
                     {
                         Bundle bundle=intent.getExtras();
                         String title= bundle.getString("title");
-                        double price=bundle.getDouble("price");
+                        //double price=bundle.getDouble("price");
                         int position =bundle.getInt("position");
-                        bookItems.add(position, new BookItem(title,price,R.drawable.book_no_name) );
+                        bookItems.add(position, new BookItem(title,R.drawable.book_no_name) );
                         //new DataSaver().Save(this,bookItems);
                         mainRecycleViewAdapter.notifyItemInserted(position);
                     }
@@ -59,10 +59,10 @@ public class MainActivity extends AppCompatActivity {
                     {
                         Bundle bundle=intent.getExtras();
                         String title= bundle.getString("title");
-                        double price=bundle.getDouble("price");
+                        //double price=bundle.getDouble("price");
                         int position =bundle.getInt("position");
                         bookItems.get(position).setTitle(title);
-                        bookItems.get(position).setPrice(price);
+                        //bookItems.get(position).setPrice(price);
                         bookItems.get(position).setResourceId(R.drawable.book_no_name);
                         mainRecycleViewAdapter.notifyItemInserted(position);
                     }
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         for(int i=1;i<20;++i)
         {
-            bookItems.add(new BookItem(bookNames[i%3],bookPrice[i%3],bookPicture[i%3]));
+            bookItems.add(new BookItem(bookNames[i%3],bookPicture[i%3]));
         }
         mainRecycleViewAdapter= new MainRecycleViewAdapter(bookItems);
         recyclerViewMain.setAdapter(mainRecycleViewAdapter);
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentUpdate=new Intent(this,InputBookItemActivity.class);
                 intentUpdate.putExtra("position",item.getOrder());
                 intentUpdate.putExtra("title",bookItems.get(item.getOrder()).getTitle());
-                intentUpdate.putExtra("price",bookItems.get(item.getOrder()).getPrice());
+               // intentUpdate.putExtra("price",bookItems.get(item.getOrder()).getPrice());
                 updateDataLauncher.launch(intentUpdate);
                 break;
             case MENU_ID_DELETE:
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
             // Get element from your dataset at this position and replace the
             // contents of the view with that element
             viewHolder.getTextViewTitle().setText(localDataSet.get(position).getTitle());
-            viewHolder.getTextViewPrice().setText(localDataSet.get(position).getPrice().toString());
+            //viewHolder.getTextViewPrice().setText(localDataSet.get(position).getPrice().toString());
             viewHolder.getImageViewImage().setImageResource(localDataSet.get(position).getResourceId());
         }
 
