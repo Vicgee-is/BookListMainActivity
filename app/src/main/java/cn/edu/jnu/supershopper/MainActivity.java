@@ -22,6 +22,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import cn.edu.jnu.supershopper.data.BookItem;
+import cn.edu.jnu.supershopper.data.DataSaver;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
     public static final int MENU_ID_DELETE = 3;
     private ArrayList<BookItem> bookItems;
     private MainRecycleViewAdapter mainRecycleViewAdapter;
-    int []bookPicture=new int[]{R.drawable.book_1, R.drawable.book_2, R.drawable.book_3};
-    String []bookNames=new String[]{" 软件项目管理案例教程（第4版）"," 创新工程实践"," 信息安全数学基础（第2版）"};
+    int []bookPicture=new int[]{R.drawable.book_1, R.drawable.book_2, R.drawable.book_no_name};
+    String []bookNames=new String[]{" 信息安全数学基础（第2版）"," 软件项目管理案例教程（第4版）"," 创新工程实践"};
     double []bookPrice=new double[]{100.00,121.00,123.00};
 
     private ActivityResultLauncher<Intent> addDataLauncher= registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
@@ -43,12 +44,30 @@ public class MainActivity extends AppCompatActivity {
                         Bundle bundle=intent.getExtras();
                         String title= bundle.getString("title");
                         double price=bundle.getDouble("price");
-                        bookItems.add(1, new BookItem(title,price,R.drawable.book_1) );
-                        mainRecycleViewAdapter.notifyItemInserted(1);
+                        int position =bundle.getInt("position");
+                        bookItems.add(position, new BookItem(title,price,R.drawable.book_no_name) );
+                        //new DataSaver().Save(this,bookItems);
+                        mainRecycleViewAdapter.notifyItemInserted(position);
                     }
                 }
             });
-
+    private ActivityResultLauncher<Intent> updateDataLauncher= registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
+            ,result -> {
+                if(null!=result){
+                    Intent intent=result.getData();
+                    if(result.getResultCode()== InputBookItemActivity.RESULT_CODE_SUCCESS)
+                    {
+                        Bundle bundle=intent.getExtras();
+                        String title= bundle.getString("title");
+                        double price=bundle.getDouble("price");
+                        int position =bundle.getInt("position");
+                        bookItems.get(position).setTitle(title);
+                        bookItems.get(position).setPrice(price);
+                        bookItems.get(position).setResourceId(R.drawable.book_no_name);
+                        mainRecycleViewAdapter.notifyItemInserted(position);
+                    }
+                }
+            });
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerViewMain.setLayoutManager(linearLayoutManager);
+
+
 
         bookItems = new ArrayList<>();
 
@@ -79,11 +100,15 @@ public class MainActivity extends AppCompatActivity {
         {
             case MENU_ID_ADD:
                 Intent intent=new Intent(this, InputBookItemActivity.class);
+                intent.putExtra("position",item.getOrder());
                 addDataLauncher.launch(intent);
                 break;
             case MENU_ID_UPDATE:
-                bookItems.get(item.getOrder()).setTitle("软件项目管理案例教程（第4版）");
-                mainRecycleViewAdapter.notifyItemChanged(item.getOrder());
+                Intent intentUpdate=new Intent(this,InputBookItemActivity.class);
+                intentUpdate.putExtra("position",item.getOrder());
+                intentUpdate.putExtra("title",bookItems.get(item.getOrder()).getTitle());
+                intentUpdate.putExtra("price",bookItems.get(item.getOrder()).getPrice());
+                updateDataLauncher.launch(intentUpdate);
                 break;
             case MENU_ID_DELETE:
                 AlertDialog alertDialog;

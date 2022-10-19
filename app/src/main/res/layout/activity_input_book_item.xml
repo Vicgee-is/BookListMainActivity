@@ -9,29 +9,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="vertical"
         >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:orientation="horizontal"
-        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="horizontal"
+            >
 
-        <TextView
-            android:id="@+id/textViewTile"
-            android:layout_width="64dp"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            tools:layout_editor_absoluteX="97dp"
-            tools:layout_editor_absoluteY="225dp" />
+            <TextView
+                android:id="@+id/textViewTile"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                tools:layout_editor_absoluteX="97dp"
+                tools:layout_editor_absoluteY="225dp" />
 
-        <EditText
-            android:id="@+id/edittext_book_item_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
-            tools:layout_editor_absoluteX="165dp"
-            tools:layout_editor_absoluteY="217dp" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/edittext_book_item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name"
+                tools:layout_editor_absoluteX="165dp"
+                tools:layout_editor_absoluteY="217dp" />
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:orientation="horizontal"
@@ -55,12 +55,22 @@
                 tools:layout_editor_absoluteX="165dp"
                 tools:layout_editor_absoluteY="217dp" />
         </LinearLayout>
-
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal">
         <Button
             android:id="@+id/button_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ok">
+            android:text="确定">
         </Button>
+
+        <Button
+            android:id="@+id/button_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消" />
+        </LinearLayout>
     </LinearLayout>
+
 </FrameLayout>
