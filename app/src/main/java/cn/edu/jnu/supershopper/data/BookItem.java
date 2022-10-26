@@ -1,6 +1,8 @@
 package cn.edu.jnu.supershopper.data;
 
-public class BookItem {
+import java.io.Serializable;
+
+public class BookItem implements Serializable {
     public BookItem(String title,  int resourceId) {
         this.title = title;
        // this.price = price;
