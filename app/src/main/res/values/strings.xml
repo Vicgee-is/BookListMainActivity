@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SuperShopper</string>
+    <string name="app_name">BookShop</string>
     <string name="string_chinese">Chinese</string>
     <string name="string_english">English</string>
 
@@ -7,5 +7,10 @@
     <string name="sure_to_delete">Are you sure to delete this item</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="string_tab_book">图书</string>
+    <string name="string_tab_news">新浪新闻</string>
+    <string name="string_tab_seller">卖家</string>
 
 </resources>
