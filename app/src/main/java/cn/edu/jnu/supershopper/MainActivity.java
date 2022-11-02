@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     return XinnaNewsFragment.newInstance();
                 case 2:
-                    return SellerFragment.newInstance();
+                    return BaiduMapFragment.newInstance();
             }
             return BookItemFragment.newInstance();
         }
