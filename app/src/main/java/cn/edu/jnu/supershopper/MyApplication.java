@@ -1,4 +1,4 @@
-package cn.edu.jnu.supershopper.data;
+package cn.edu.jnu.supershopper;
 
 import android.app.Application;
 
