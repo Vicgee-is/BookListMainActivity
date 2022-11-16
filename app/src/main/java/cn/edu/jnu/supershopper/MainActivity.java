@@ -32,13 +32,15 @@ public class MainActivity extends AppCompatActivity {
                     return XinnaNewsFragment.newInstance();
                 case 2:
                     return BaiduMapFragment.newInstance();
+                case 3:
+                    return GameFragment.newInstance();
             }
             return BookItemFragment.newInstance();
         }
 
         @Override
         public int getItemCount() {
-            return 3;
+            return 4;
         }
     }
     @Override
@@ -63,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 2:
                         tab.setText(R.string.string_tab_seller);
+                        break;
+                    case 3:
+                        tab.setText(R.string.game_str);
                         break;
                 }
             }

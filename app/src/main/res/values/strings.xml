@@ -12,5 +12,6 @@
     <string name="string_tab_book">图书</string>
     <string name="string_tab_news">消息</string>
     <string name="string_tab_seller">卖家</string>
+    <string name="game_str">游戏</string>
 
 </resources>
