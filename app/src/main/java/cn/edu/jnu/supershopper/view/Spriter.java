@@ -21,10 +21,10 @@ public class Spriter {
     }
     public void move(float maxHeight, float maxWidth)
     {
-        if(Math.random()<0.05)
+        /*if(Math.random()<0.05)
         {
             setDirection((float) (Math.random()*2*Math.PI));
-        }
+        }*/
         x= (float) (x+30*Math.cos(direction));
         y= (float) (y+30*Math.sin(direction));
         if(x<0)x+=maxWidth;
@@ -35,7 +35,7 @@ public class Spriter {
     }
     public void draw(Canvas canvas)
     {
-        Bitmap bitmap=((BitmapDrawable)context.getResources().getDrawable(R.drawable.folder)).getBitmap();
+        Bitmap bitmap=((BitmapDrawable)context.getResources().getDrawable(R.drawable.mouse)).getBitmap();
         Rect mSrcRect, mDestRect;
         Paint mBitPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
@@ -74,5 +74,8 @@ public class Spriter {
 
     public void setDirection(float direction) {
         this.direction = direction;
+    }
+    public boolean isTouched(float touchedX, float touchedY) {
+        return (touchedX-x)*(touchedX-x)+(touchedY-y)*(touchedY-y)<=800000;
     }
 }
