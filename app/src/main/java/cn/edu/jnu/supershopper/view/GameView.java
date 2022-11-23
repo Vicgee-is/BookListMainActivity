@@ -2,8 +2,10 @@ package cn.edu.jnu.supershopper.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Picture;
 import android.graphics.Rect;
@@ -118,10 +120,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                     canvas = surfaceHolder.lockCanvas();
                     canvas.drawColor(Color.GREEN);
 
-                   /* Bitmap bitmap1=((BitmapDrawable)getResources().getDrawable(R.drawable.glass)).getBitmap();
-                    Paint mBitPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                    canvas.drawBitmap(bitmap1, getWidth(), getHeight(), mBitPaint);
-*/
+                    Bitmap bitmap = BitmapFactory.decodeResource(GameView.this.getContext().getResources(),R.drawable.glass);  //设置背景
+                    canvas.drawBitmap(bitmap, new Matrix(), new Paint());
+
                     if(isTouched) {
                         float tempX = touchedX;
                         float tempY = touchedY;
